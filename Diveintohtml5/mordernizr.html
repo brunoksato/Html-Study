@@ -1,1 +1,22 @@
-ss
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Dive Into HTML5</title>
+  <script src="modernizr.min.js"></script>
+</head>
+<body>
+  ...
+</body>
+<script type="text/javascript">
+        if (Modernizr.canvas) {
+          // let's draw some shapes!
+        } else {
+          // no native canvas support available :(
+        }
+
+        function supports_canvas() {
+          return !!document.createElement('canvas').getContext;
+        }
+</script>
+</html>
