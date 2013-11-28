@@ -1,22 +1,201 @@
 <!DOCTYPE html>
-<html>
+<html class="no-js">
 <head>
   <meta charset="utf-8">
   <title>Dive Into HTML5</title>
-  <script src="modernizr.min.js"></script>
+  <script type="text/javascript" src="modernizr.min.js">
+  </script>
 </head>
 <body>
   ...
 </body>
 <script type="text/javascript">
-        if (Modernizr.canvas) {
-          // let's draw some shapes!
-        } else {
-          // no native canvas support available :(
-        }
+if (Modernizr.video) {
+ alert("let's play some video!");
+ if (Modernizr.video.webm) {
+  alert("try WebM");
+  }
+  else if (Modernizr.video.ogg){
+    alert("try Ogg Theora + Vorbis in an Ogg container");
+  }
+  else if (Modernizr.video.h264){
+  alert("try H.264 video + AAC audio in an MP4 container");
+  }
+else {
+  alert("no native video support available :( ,aybe check for QuickTime or Flash instead ");
+}
 
-        function supports_canvas() {
-          return !!document.createElement('canvas').getContext;
-        }
+if (Modernizr.canvas) {
+  alert("let's draw some shapes!");
+} else {
+  alert("no native canvas support available :(");
+}
+
+if (Modernizr.canvastext){
+  alert("let's draw some shapes!");
+} else {
+  alert("no native canvas support available :(");
+}
+
+if (Modernizr.video.webm)
+  alert("try WebM");
+else if (Modernizr.video.ogg)
+  alert("try Ogg Theora + Vorbis in an Ogg container");
+else if (Modernizr.video.h264)
+  alert("try H.264 video + AAC audio in an MP4 container");
+
+function supports_video() {
+  return !!document.createElement('video').canPlayType;
+}
+
+function supports_h264_baseline_video() {
+  if (!supports_video()) { return false; }
+  var v = document.createElement("video");
+  return v.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"');
+}
+
+function supports_ogg_theora_video() {
+  if (!supports_video()) { return false; }
+  var v = document.createElement("video");
+  return v.canPlayType('video/ogg; codecs="theora, vorbis"');
+}
+
+function supports_webm_video() {
+  if (!supports_video()) { return false; }
+  var v = document.createElement("video");
+  return v.canPlayType('video/webm; codecs="vp8, vorbis"');
+}
+
+function supports_canvas() {
+  return !!document.createElement('canvas').getContext;
+}
+
+function supports_canvas_text() {
+  if (!supports_canvas()) { return false; }
+  var dummy_canvas = document.createElement('canvas');
+  var context = dummy_canvas.getContext('2d');
+  return typeof context.fillText == 'function';
+}
+
+function supports_local_storage() {
+  try {
+    return 'localStorage' in window && window['localStorage'] !== null;
+  } catch(e){
+    return false;
+  }
+}
+
+if (!supports_local_storage()) {alert("NO!");}
+else {alert("YES!");}
+
+//Yes work :)
+if (Modernizr.localstorage) {
+  alert('window.localStorage is available!');
+} else {
+  alert('no native support for local storage :(,  try a fallback or another third-party solution');
+}
+
+function supports_web_workers() {
+  return !!window.Worker;
+}
+
+if (supports_local_storage()){
+  alert('window.Worker is available!');
+} else{
+ alert('no native support for web workers :( ,try a fallback or another third-party solution');
+}
+
+if (Modernizr.webworkers) {
+  alert('window.Worker is available!');
+} else {
+  alert('no native support for web workers :( ,try a fallback or another third-party solution');
+}
+
+function supports_offline() {
+  return !!window.applicationCache;
+}
+
+if (supports_offline()){
+  alert('window.applicationCache is available!');
+} else{
+ alert('no native support for offline :(');
+}
+
+if (Modernizr.applicationcache) {
+  alert('window.applicationCache is available!');
+} else {
+  alert('no native support for offline :(');
+}
+
+function supports_geolocation() {
+  return 'geolocation' in navigator;
+}
+
+if (supports_geolocation()){
+  alert('lets find out where you are!');
+} else{
+ alert('no native geolocation support available :(');
+}
+
+if (Modernizr.geolocation) {
+  alert('lets find out where you are!');
+} else{
+ alert('no native geolocation support available :(');
+}
+
+function supports_input() {
+  var i = document.createElement("input");
+  i.setAttribute("type", "color");
+  return i.type !== "text";
+}
+
+if (!Modernizr.inputtypes.color) {
+  alert('no native support for <input type="date"> :(');
+  // maybe build one yourself with Dojo or jQueryUI
+}
+
+function supports_input_placeholder() {
+  var i = document.createElement('input');
+  return 'placeholder' in i;
+}
+
+if (Modernizr.input.placeholder) {
+  alert('your placeholder text should already be visible!');
+} else {
+  alert('no placeholder support :(');
+}
+
+function supports_input_autofocus() {
+  var i = document.createElement('input');
+  return 'autofocus' in i;
+}
+
+if (Modernizr.input.autofocus) {
+  alert('autofocus works!');
+} else {
+  alert('no autofocus support :(');
+}
+function supports_microdata_api() {
+  return !!document.getItems;
+}
+
+if (supports_microdata_api()) {
+  alert('microdata works!');
+} else {
+  alert('no microdata support :(');
+}
+
+
+var span = document.createElement('span');
+span.itemtype = "http://schema.org/Person";
+!!document.getItems('http://schema.org/Person') === true ? alert('yes') : alert ('no');
+
+if (Modernizr.history) {
+  // history management works!
+} else {
+  // no history support :(
+  // fall back to a scripted solution like History.js
+}
+
 </script>
 </html>
