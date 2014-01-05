@@ -1,0 +1,16 @@
+/*Manipula todas as font pelo Body*/
+body {
+	font-size: 100%;
+}
+ 
+div {
+    font-size: 1.05em;
+}
+ 
+h1 {
+    font-size: 1.25em;
+}
+ 
+p {
+    font-size: 0.75em;
+}
