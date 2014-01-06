@@ -1,4 +1,4 @@
-Html-Study
+Html and CSS
 ==========
 
-Paginas de html que estou estudando...
+pages html and css in study
